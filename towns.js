@@ -21,16 +21,23 @@ function deleteTown() {
 		}
 	}
 	if (removed)
-		$('#result').text(townName + " deleted.");
+	    showMessage(townName + " deleted.");
 	else
-		$('#result').text(townName + " not found.");
+	    showMessage(townName + " not found.");
 }
 
+function showMessage(msg) {
+	$('#result').text(msg).css("display", "block");
+	setTimeout(function () {
+		$('#result').hide('blind', {}, 500);
+	}, 3000);
+}
 function addTown() {
 	let townName = $('#townNameForAdd').val();
 	$('#townNameForAdd').val('');
 	$('#towns').append($('<option>').text(townName));
-	$('#result').text(townName + " added.");
+	// $('#result').text(townName + " added.");
+	showMessage(townName + " added.");
 }
 
 function shuffleTowns() {
@@ -38,7 +45,8 @@ function shuffleTowns() {
 	$('#towns').empty();
 	shuffleArray(towns);
 	$('#towns').append(towns);
-	$('#result').text("Towns shuffled.");
+	// $('#result').text("Towns shuffled.");
+	showMessage("Towns shuffled.");
 
 	function shuffleArray(array) {
 		for (var i = array.length - 1; i > 0; i--) {
